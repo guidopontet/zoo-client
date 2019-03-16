@@ -1,0 +1,79 @@
+<div class="col-lg-12" [@fadeLateral]>
+	<h3>{{title}}</h3>
+
+	<!-- BUSCADOR -->
+	<div class="row">
+		<div class="col-lg-1">
+			Buscar:
+		</div>
+		<div class="col-lg-3 ">
+			<input type="text " [(ngModel)]="busqueda">
+		</div>
+
+		<div class="col-lg-4 " *ngIf="busqueda">
+			<span class="badge badge-success">Término de búsqueda: <strong>{{busqueda}}</strong></span>
+		</div>
+	</div>
+	<br>
+
+	<!-- TABLA -->
+	<table class="table table-hover">
+		<thead class="thead-default">
+			<tr>
+				<th>Nombre</th>
+				<th>Año</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody class="">
+			<!-- Utilizamos el pipe 'search' para filtrar por el patron de busqueda 'busqueda' como segundo parametro -->
+			<tr *ngFor="let animal of animals | search:busqueda">
+				<td>{{animal.name}}</td>
+				<td>{{animal.year}}</td>
+				<td>
+
+					<a [routerLink]="['/animal',animal._id]" class="btn btn-sm btn-success">
+						<span class="fas fa-eye" style=""></span>
+						Ver
+					</a>
+
+					<a [routerLink]="['/admin-panel/editar',animal._id]" class="btn btn-sm btn-primary">
+						<span class="fas fa-pencil-alt" style=""></span>
+						Editar
+					</a>
+
+					<!-- ELIMINAR -->
+					<a href="#exampleModal-{{animal._id}}" type="button" class="btn btn-sm btn-danger" data-toggle="modal" >
+						<span class="fas fa-trash-alt" style=""></span>
+						Eliminar
+					</a>
+
+					<!-- MODAL ELIMINAR -->
+					<!-- (El id tiene que se dinamico para que genera un modal para cada animal) -->
+					<div class="modal fade" id="exampleModal-{{animal._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+					 			<div class="modal-header">
+					        		<h5 class="modal-title" id="exampleModalLabel">¿Estás seguro?</h5>
+					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          			<span aria-hidden="true">&times;</span>
+					        		</button>
+					      		</div>
+					      		<div class="modal-body">
+					        		<p class="text-danger">¿Realmente quieres eliminar el animal {{animal.name}}?</p>
+					        		<p class="text">Si lo borras no podrás recuperarlo</p>
+					      		</div>
+					      		<div class="modal-footer">
+					        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					        		<button data-dismiss="modal"  type="button" class="btn btn-danger" (click)="deleteAnimal(animal._id)">Eliminar</button>
+					      		</div>
+				    		</div>
+						</div>
+					</div>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+

@@ -1,0 +1,51 @@
+<div class="col-lg-6 offset-lg-3 animated zoomIn">
+	<h1 class="text-lg-center">{{title}}</h1>
+
+	<!-- MENSAJE DE NOTIFICACION -->
+	<div class="alert alert-success" *ngIf="status=='success'">
+		Información actualizada correctamente
+	</div>
+	<div class="alert alert-danger" *ngIf="status=='error'">
+		Error al efectuar la actualización de datos
+	</div>
+
+	<!-- FORMULARIO -->
+	<form #userEdit="ngForm" (ngSubmit)="onSubmit();">
+		<p>
+			<label>Nombre</label>
+			<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required>
+			<span *ngIf="!name.valid && name.touched">
+				<div class="alert alert-danger">El nombre es obligatorio!</div>
+			</span>
+		</p>
+		<p>
+			<label>Apellido</label>
+			<input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required>
+			<span *ngIf="!surname.valid && surname.touched">
+				<div class="alert alert-danger">El apellido es obligatorio!</div>
+			</span>
+		</p>
+		<p>
+			<label class="azul">Correo Electrónico</label>
+			<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
+			<span *ngIf="!email.valid && email.touched">
+				<div class="alert alert-danger">El email es obligatorio!</div>
+			</span>
+		</p>
+		
+		<!-- Si el usuario tiene una imagen, la mostramos -->
+		<div class="mb-3" *ngIf="user.image && user.image!='null'">
+			<label class="azul">Avatar</label>
+			<img src="{{url+'get-image-file/'+user.image}}" class="img-fluid" alt="Responsive image">
+		</div>
+
+		<p>
+			<label *ngIf="user.image && user.image!='null'">Cambia tu Avatar</label>
+			<label *ngIf="!user.image || user.image=='null'">Sube tu Avatar</label>
+			<!-- El metodo change, cuando cambie algo, en este caso cuando seleccione una imagen -->
+			<input type="file" placeholder="Subir Imagen" class="form-control-file" (change)="fileChangeEvent($event)">
+		</p>
+
+		<input type="submit" value="{{title}}" name="boton"  [disabled]="!userEdit.valid" class="btn btn-success form-control" name="">
+	</form>
+</div>

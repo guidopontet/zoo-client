@@ -1,20 +1,103 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- MENU DE NAVEGACION -->
+<div class="navigation col-lg-12">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
 
+			<!-- BRAND -->
+			<a [routerLink]="['/home']" class="navbar-brand">{{title}}</a>
+
+			<!-- BOTON PARA DISPOSITIVOS PEQUEÑOS -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+		  	</button>
+			
+			<!-- NAVEGACION -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a [routerLink]="['/home']" [routerLinkActive]="['active','animated','jello']" class="nav-link">
+							<span class="fas fa-home fa-lg" style="color:gray"></span> 
+							Inicio
+						</a>
+					</li>
+					<li class="nav-item">
+						<a [routerLink]="['/animals']" [routerLinkActive]="['active','animated','jello']" class="nav-link">
+						<span class="fab fa-earlybirds fa-lg" style="color:gray"></span>
+						Animales
+						</a>
+					</li>
+					<li class="nav-item">
+						<a [routerLink]="['/keepers']" [routerLinkActive]="['active','animated','jello']" class="nav-link">
+						<span class="fas fa-blind fa-lg " style="color:gray"></span>
+						Cuidadores
+						</a>
+					</li>				
+
+				</ul>
+
+				<!-- MENU DE REGISTRO Y LOGIN -->
+				<ul class="navbar-nav justify-content-end animated bounceInRight" *ngIf="!identity">
+					<li class="nav-item">
+						<a [routerLink]="['/registro']" [routerLinkActive]="['active','animated','jello']" class="nav-link">
+							<span class="fas fa-user-plus fa-lg" style="color:gray"></span>
+							Registro 
+						</a>						
+					</li>
+
+					<li class="nav-item">
+						<a [routerLink]="['/login']" [routerLinkActive]="['active','animated','jello']" class="nav-link">
+							<span class="fas fa-user-circle fa-lg" style="color:gray"></span>
+							Login
+						</a>						
+					</li>
+				</ul>
+
+
+				<!-- MENU DE USUARIO -->
+				<ul class="navbar-nav justify-content-end animated rollIn mt-2" *ngIf="identity">
+
+					
+
+					<!-- NOMBRE DE USUARIO -->
+					<a href="#" class="dropdown-toggle colorPage" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+						<!-- IMAGEN DE USUARIO SI TIENE -->
+						<div *ngIf="identity.image && identity.image!='null'" class="cuadrado float-lg-left">
+							<img src="{{url+'get-image-file/'+identity.image}}" class="img-fluid avatar " alt="Responsive image">
+						</div>
+
+						<!-- IMAGEN POR DEFAULT DE USUARIO -->
+						<span *ngIf="!identity.image || identity.image=='null'" class="fas fa-smile fa-lg float-left" style="color:#2AA7E8"></span>
+						<div class="float-left avatar_nombre">Hola {{identity.name}}</div>
+					</a>
+						
+					<!-- DROPDOWN -->
+					<div class="dropdown-menu dropdown-menu-right text-lg-right" aria-labelledby="dropdownMenuLink">
+
+						<!-- PANEL DE ADMINISTRACIÓN SOLO PARA USUARIOS ADMINISTRADORES -->
+						<a *ngIf="identity && identity.role=='ROLE_ADMIN'" [routerLink]="['/admin-panel']" class="dropdown-item">
+							<span class="fas fa-cogs fa-lg " style="color:grey"></span>
+							Panel Administrador
+						</a>
+						<a [routerLink]="['/mis-datos']" class="dropdown-item">
+							<span class="fas fa-user fa-lg " style="color:grey"></span>
+							Mis datos
+						</a>
+						<a (click)="logOut()" class="dropdown-item pointer">
+							<span class="fas fa-sign-out-alt fa-lg " style="color:grey"></span>
+							Salir
+						</a>
+					</div>
+				</ul>
+
+			</div>
+
+		</div>
+	</nav>
+</div>
+
+<!-- COMPONENTES -->
+<!-- Cargamos el componente según la ruta (De manera dinamica) -->
+<div class="col-lg-11 mt-4">
+	<router-outlet></router-outlet>
+</div>

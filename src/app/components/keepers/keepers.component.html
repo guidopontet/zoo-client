@@ -1,0 +1,27 @@
+<div class="animated bounceInLeft" [@fadeIn]>
+	<h1>{{title}}</h1>
+	<div class="row">
+		<div class="col-lg-3 col-sm-6 mb-3" *ngFor="let keeper of keepers">
+
+			
+			<div class="card" style="width: 18rem;">
+			
+				<!-- IMAGEN -->
+				<div class="keeper-image">
+					<img class="card-img-top" *ngIf="keeper.image" src="{{url+'get-image-file/'+keeper.image}}" alt="Card image cap">
+					<img class="card-img-top img-fluid" *ngIf="!keeper.image" src="{{url+'get-image-file/'+'user.png'}}" alt="Card image cap">
+				</div>
+			
+				<!-- CONTENIDO -->
+				<div class="card-body">
+					<h5 class="card-title">{{keeper.name+' '+keeper.surname}}</h5>
+					
+				</div>
+
+
+			</div>
+			
+
+		</div>
+	</div>
+</div>

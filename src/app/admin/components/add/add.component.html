@@ -1,0 +1,48 @@
+<div class="col-lg-8 " [@fadeLateral]>
+	<h3>{{title}}</h3>
+
+	<!-- MENSAJE DE NOTIFICACION -->
+	<div class="alert alert-success" *ngIf="status=='success'">
+		Animal agregado correctamente
+	</div>
+	<div class="alert alert-danger" *ngIf="status=='error'">
+		Error al agregar el animal
+	</div>
+	
+	<!-- FORMULARIO -->
+	<form #formAdd="ngForm" (ngSubmit)="onSubmit()">
+		<p>
+			<label>Nombre</label>
+			<input type="text" name="name" #name="ngModel" [(ngModel)]="animal.name" class="form-control"  required="">
+			<span *ngIf="!name.valid && name.touched">
+				<div class="alert alert-danger">El Nombre es obligatorio!</div>
+			</span>
+		</p>
+	
+		<p>
+			<label>Descripción</label>
+			<textarea class="form-control" name="description" #description="ngModel" [(ngModel)]="animal.description" required=""></textarea>
+			<span *ngIf="!description.valid && description.touched">
+				<div class="alert alert-danger">La descripción es obligatoria!</div>
+			</span>
+		</p>
+	
+		<p>
+			<label>Año</label>
+			<input type="text" class="form-control" name="year" #year="ngModel" [(ngModel)]="animal.year" required="">
+			<span *ngIf="!year.valid && year.touched">
+				<div class="alert alert-danger">El año es obligatorio!</div>
+			</span>
+		</p>
+
+		<p>
+			<label>Imagen del animal</label>
+			<!-- El metodo change, cuando cambie algo, en este caso cuando seleccione una imagen -->
+			<input type="file" (change)="fileChangeEvent($event)" placeholder="Subir Imagen" class="form-control-file">
+		</p>
+	
+		<input type="submit" value="Crear nuevo" [disabled]="!formAdd.valid" class="btn btn-success form-control">
+	
+	
+	</form>
+</div>

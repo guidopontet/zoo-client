@@ -1,0 +1,10 @@
+
+
+<!-- MOSTRAR EMAIL -->
+<div *ngIf="email">
+	<h4>{{title}}</h4>
+	<span ><strong>Email: </strong>
+		{{email}}
+	</span>
+	<button (click)="eliminarEmail()" *ngIf="email">Eliminar Email</button>
+</div>

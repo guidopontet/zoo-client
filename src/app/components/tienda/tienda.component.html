@@ -1,0 +1,26 @@
+<div [@fadeIn]>
+	<a class="boton-activo btn btn-success" (click)="cambiarEstado()" [@marcar]="status">Activar boton</a>
+	
+	<hr>
+	<h4>Animaciones CCS3</h4>
+	<a href="#" class="boton-transiciones">Transición</a>
+	
+	<div class="clearfix"></div>
+	
+	<div class="caja-animada"></div>
+	
+	<hr>
+	
+	<h3>{{titulo}}</h3>
+	
+	<!-- VAMOS A UTILIZAR JQUERY DENTRO DE ANGULAR -->
+	<!-- En vez de usar el evento 'click' de Angular, usamos Jquery para comprobar que funciona -->
+	<button id="boton">Mostrar Textos</button>
+	<p id="texto" class="alert alert-success">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque laborum molestiae eaque molestias eum minus sit adipisci incidunt, veritatis ad consequatur quia tempora maiores magnam illo voluptas unde, dignissimos esse? Alias quisquam et voluptatum! Necessitatibus vitae, eius? Odit ad repudiandae velit, expedita asperiores quasi dolor iure ab, eius facere, reprehenderit?</p>
+	
+	<hr>
+	
+	<div id="textoSobresalido" style="width:300px; height: 100px; border:1px solid black" class="">
+		<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus beatae modi, nisi molestiae eum, doloribus ducimus laudantium sapiente minima ea, praesentium fugit, porro id? Sapiente eveniet repellendus ea ex maiores adipisci in sequi architecto repudiandae at illum, fugit ab similique esse minus! Est repudiandae, quasi! Modi beatae maxime maiores commodi aperiam dolore earum corporis fugiat est amet inventore cum, laborum sit ut laudantium autem. In rem et temporibus blanditiis repellat earum quia placeat expedita facere sed omnis id, doloremque, reiciendis recusandae corporis, facilis cumque praesentium aspernatur dolore ipsum autem officia porro obcaecati velit! Ab, sapiente! Veniam, aut labore esse corporis!</p>
+	</div>
+</div>

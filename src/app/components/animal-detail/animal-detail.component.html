@@ -1,0 +1,20 @@
+<div class="card animated bounceInLeft" style="width: 18rem;" *ngIf="animal">
+	<!-- IMAGEN -->
+	<img class="card-img-top" src="{{url+'get-image-animal/'+animal.image}}" alt="">
+
+	<div class="card-body">
+		<h2 class="card-title">{{animal.name}}</h2>
+		<p class="card-text">
+			<span class="fas fa-angle-right fa-lg f" style="color: #1DC4F4"></span>
+			{{animal.user.name+' '+animal.user.surname}}
+		</p>
+		<p class="card-text">
+			<span class="fas fa-angle-right fa-lg f" style="color: #1DC4F4"></span>
+			{{animal.year}}
+		</p>
+		<p class="card-text">
+			<span class="fas fa-angle-right fa-lg f" style="color: #1DC4F4"></span>
+			{{animal.description}}
+		</p>
+	</div>
+</div>

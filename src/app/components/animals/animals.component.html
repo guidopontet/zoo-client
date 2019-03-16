@@ -1,0 +1,28 @@
+<div class="animated bounceInLeft" [@fadeIn]>
+	<h1>{{title}}</h1>
+
+	<div class="row">
+		<div class="col-lg-3 col-sm-6 mb-3" *ngFor="let animal of animals">
+
+			
+			<div class="card" style="width: 18rem;">
+			
+				<!-- IMAGEN -->
+				<div class="animal-image">
+					<img class="card-img-top" *ngIf="animal.image" src="{{url+'get-image-animal/'+animal.image}}" alt="Card image cap">
+					<img class="card-img-top" *ngIf="!animal.image" src="{{url+'get-image-animal/'+'zoo.jpg'}}" alt="Card image cap">
+				</div>
+			
+				<!-- CONTENIDO -->
+				<div class="card-body">
+					<h5 class="card-title">{{animal.name}}</h5>
+					<a [routerLink]="['/animal/'+animal._id]" class="btn btn-primary">Ver más</a>
+				</div>
+
+
+			</div>
+			
+
+		</div>
+	</div>
+</div>

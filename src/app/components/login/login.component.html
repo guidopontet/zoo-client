@@ -1,0 +1,32 @@
+<div class="col-lg-6 offset-lg-3 animated fadeInDown">
+	<h1 class="text-lg-center">{{title}}</h1>
+
+	<!-- MENSAJE DE NOTIFICACION -->
+	<div class="alert alert-success" *ngIf="status=='success'">
+		Login exitoso!!
+	</div>
+	<div class="alert alert-danger" *ngIf="status=='error'">
+		{{errorMesage}}
+	</div>
+
+	<!-- FORMULARIO -->
+	<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+		<p>
+			<label>Correo Electrónico</label>
+			<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
+			<span *ngIf="!email.valid && email.touched">
+				<div class="alert alert-danger">El email es obligatorio!</div>
+			</span>
+		</p>
+		<p>
+			<label>Contraseña</label>
+			<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required>
+			<span *ngIf="!password.valid && password.touched">
+				<div class="alert alert-danger">Ingresa tu contraseña</div>
+			</span>
+		</p>
+
+		<input type="submit" value="{{title}}" [disabled]="!loginForm.valid" name="boton" class="btn btn-success form-control">
+	</form>
+
+</div>

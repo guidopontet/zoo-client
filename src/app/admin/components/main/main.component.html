@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-lg-4">
+		<h3>{{title}}</h3>
+		<div class="sidebar-admin">
+			<ul class="nav flex-column nav-pills" aria-orientation="vertical" role="tablist">
+				<li role="presentation nav-item">
+					<a [routerLink]="['listado']" [routerLinkActive]="['active']" class="nav-link">Listado</a>
+				</li>
+				<li role="presentation nav-item">
+					<a [routerLink]="['crear']" [routerLinkActive]="['active']" class="nav-link">Crear</a>
+				</li>
+				<li role="presentation nav-item">
+					<a [routerLink]="['editar']" [routerLinkActive]="['active']" class="nav-link">Información</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- para que se carguen los componentes dinamicamene segun la ruta -->
+	<div class="col-lg-8">
+		<router-outlet ></router-outlet>
+	</div>
+</div>
